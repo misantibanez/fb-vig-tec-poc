@@ -1,0 +1,25 @@
+/// Vista analítica de riesgo, impacto y horizonte de retiro tecnológico.
+perspective '02 - Riesgo y Deprecacion'
+
+	perspectiveTable dim_date
+
+	perspectiveTable dim_risk_band
+
+	perspectiveTable dim_technology
+
+	perspectiveTable fact_deprecation_impact
+
+		perspectiveMeasure 'Impactos de Deprecacion'
+
+		perspectiveMeasure 'Activos Afectados'
+
+		perspectiveMeasure 'Riesgo Promedio'
+
+		perspectiveMeasure 'Dias Promedio a Retiro'
+
+		perspectiveMeasure '% Activos Afectados'
+
+	perspectiveTable dim_cloud_provider
+
+	perspectiveTable dim_environment
+

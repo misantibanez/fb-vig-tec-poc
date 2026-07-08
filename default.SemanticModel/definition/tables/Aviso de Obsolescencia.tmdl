@@ -1,0 +1,147 @@
+/// Avisos de obsolescencia y retiro de servicios Azure, normalizados desde release communications (slv_deprecation_event).
+table 'Aviso de Obsolescencia'
+	lineageTag: 82c07c2f-db4f-410b-98fc-1e53b31d5cd5
+
+	/// Cantidad total de avisos de obsolescencia.
+	measure 'Total Avisos' = COUNTROWS('Aviso de Obsolescencia')
+		formatString: #,0
+		lineageTag: 282fd2e5-a24f-42f2-a82f-da8e67dde6b6
+
+	/// Avisos con severidad critica.
+	measure 'Avisos Criticos' = CALCULATE(COUNTROWS('Aviso de Obsolescencia'), 'Aviso de Obsolescencia'[Severidad] = "critical")
+		formatString: #,0
+		lineageTag: e9d59a36-359e-417d-a196-dbcf684fe63f
+
+	/// Avisos con fecha de retiro en los proximos 90 dias.
+	measure 'Proximos a Vencer (90d)' =
+			CALCULATE(
+			    COUNTROWS('Aviso de Obsolescencia'),
+			    'Aviso de Obsolescencia'[Fecha de Retiro] >= TODAY(),
+			    'Aviso de Obsolescencia'[Fecha de Retiro] <= TODAY() + 90
+			)
+		formatString: #,0
+		lineageTag: ff9df6dc-4d36-4197-8a36-1622318180f3
+
+	/// Avisos con retiro vencido (ya pasaron su fecha de retiro).
+	measure 'Avisos Vencidos' =
+			CALCULATE(
+			    COUNTROWS('Aviso de Obsolescencia'),
+			    'Aviso de Obsolescencia'[Fecha de Retiro] < TODAY()
+			)
+		formatString: #,0
+		lineageTag: 966aa67a-e600-41e4-b9ae-51d4e632cd28
+
+	/// Proxima fecha de retiro en el contexto de filtro actual.
+	measure 'Proxima Fecha de Retiro' =
+			MINX(
+			    FILTER('Aviso de Obsolescencia', 'Aviso de Obsolescencia'[Fecha de Retiro] >= TODAY()),
+			    'Aviso de Obsolescencia'[Fecha de Retiro]
+			)
+		formatString: dd/MM/yyyy
+		lineageTag: 1d836770-4b9d-4b8c-94c1-58d7fa093de9
+
+	/// Clave surrogate del aviso. FK con fact_deprecation_impact.
+	column deprecation_sk
+		dataType: string
+		isHidden
+		isKey
+		isAvailableInMdx: false
+		lineageTag: 3567a5b7-4754-487f-b15b-2189abebe8bc
+		summarizeBy: none
+		sourceColumn: deprecation_sk
+
+	/// Proveedor del servicio afectado.
+	column Proveedor
+		dataType: string
+		lineageTag: ac44974c-e62a-41a0-8aad-192fef93027c
+		summarizeBy: none
+		sourceColumn: vendor
+
+	/// Identificador hash del aviso.
+	column notice_id
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: d8bd0e87-73f0-406f-a61b-9f396d0294c2
+		summarizeBy: none
+		sourceColumn: notice_id
+
+	/// Titulo del aviso de retiro o deprecacion.
+	column 'Titulo del Aviso'
+		dataType: string
+		lineageTag: 79e94196-a88f-46cc-8c2a-d27ac778f910
+		isDefaultLabel
+		summarizeBy: none
+		sourceColumn: notice_title
+
+	/// Familia de tecnologia impactada: containers, compute, data, etc.
+	column 'Familia Tecnologica'
+		dataType: string
+		lineageTag: 968b7854-593f-4b4f-a601-b3f4f0a9964d
+		summarizeBy: none
+		sourceColumn: technology_family
+
+	/// Nombre del servicio Azure afectado.
+	column 'Servicio Afectado'
+		dataType: string
+		lineageTag: eb1a2d77-94b9-4591-889f-1b95f94131b6
+		summarizeBy: none
+		sourceColumn: affected_service
+
+	/// Runtime o lenguaje afectado.
+	column 'Runtime Afectado'
+		dataType: string
+		lineageTag: 7a171164-23a6-40c2-8e0d-909d82b1279c
+		summarizeBy: none
+		sourceColumn: affected_runtime
+
+	/// Version especifica que sera retirada.
+	column 'Version Afectada'
+		dataType: string
+		lineageTag: 3780742a-be83-4c28-922f-c52ffd05eac6
+		summarizeBy: none
+		sourceColumn: affected_version
+
+	/// Fecha de publicacion del aviso.
+	column Publicado
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		lineageTag: ca2354c9-5d03-4cb8-b386-ebb036ef4b63
+		summarizeBy: none
+		sourceColumn: published_at
+
+	/// Fecha planeada de retiro del servicio o feature.
+	column 'Fecha de Retiro'
+		dataType: dateTime
+		formatString: dd/MM/yyyy
+		lineageTag: 655e1e09-4721-4913-8daf-49eba40fd7b0
+		summarizeBy: none
+		sourceColumn: retirement_at
+
+	/// Severidad: critical, high, medium, low.
+	column Severidad
+		dataType: string
+		lineageTag: 6f1ae748-76f7-4139-9c7f-6ff8e51680c4
+		summarizeBy: none
+		sourceColumn: severity
+
+	/// Alcance: service, feature, runtime, os, sku, configuration.
+	column 'Alcance del Impacto'
+		dataType: string
+		lineageTag: 11daa367-5cf4-46a3-94ac-e103f6b5464c
+		summarizeBy: none
+		sourceColumn: impact_scope
+
+	/// Estado: retiring, retired, deprecated, unknown.
+	column Estado
+		dataType: string
+		lineageTag: 7f2ea42b-76a4-4855-b618-86d66e429aaa
+		summarizeBy: none
+		sourceColumn: status
+
+	partition 'Aviso de Obsolescencia' = entity
+		mode: directLake
+		source
+			entityName: slv_deprecation_event
+			expressionSource: 'DirectLake - slv_vigencia'
+

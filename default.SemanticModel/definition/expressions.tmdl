@@ -1,0 +1,17 @@
+expression 'DirectLake - gld_vigencia' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/591a0c0e-f09f-45b5-b7a9-26f68534a05d/2ebadde7-0a64-43ff-85a2-24b2c205ef37", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 8797c5f1-1bf6-45c6-8687-28514c76a1f4
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+/// Conexión Direct Lake al Lakehouse Silver slv_vigencia
+expression 'DirectLake - slv_vigencia' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/591a0c0e-f09f-45b5-b7a9-26f68534a05d/29ed4f8f-72cc-4511-879f-e632ed6ec4f9", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 9c0b39ce-25f8-45b7-af06-1bb074c50a5d
+

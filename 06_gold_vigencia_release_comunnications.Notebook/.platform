@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "06_gold_vigencia_release_comunnications"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "9e726c41-676a-ba2c-48af-3ea78b749aa1"
+  }
+}

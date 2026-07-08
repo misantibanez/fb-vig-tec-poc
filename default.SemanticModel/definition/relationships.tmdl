@@ -1,0 +1,40 @@
+relationship rel_f_inv_date
+	fromColumn: fact_inventory_snapshot.date_sk
+	toColumn: dim_date.date_sk
+
+relationship rel_f_inv_asset
+	fromColumn: fact_inventory_snapshot.asset_sk
+	toColumn: dim_asset.asset_sk
+
+relationship rel_f_inv_account
+	fromColumn: fact_inventory_snapshot.account_nk
+	toColumn: dim_account.account_nk
+
+relationship rel_f_inv_provider
+	fromColumn: fact_inventory_snapshot.cloud_provider
+	toColumn: dim_cloud_provider.provider_name
+
+relationship rel_f_inv_environment
+	fromColumn: fact_inventory_snapshot.environment
+	toColumn: dim_environment.environment_name
+
+relationship rel_f_dep_date
+	fromColumn: fact_deprecation_impact.date_sk
+	toColumn: dim_date.date_sk
+
+relationship rel_f_dep_asset
+	fromColumn: fact_deprecation_impact.asset_sk
+	toColumn: dim_asset.asset_sk
+
+relationship rel_f_dep_technology
+	fromColumn: fact_deprecation_impact.technology_sk
+	toColumn: dim_technology.technology_sk
+
+relationship rel_f_dep_risk_band
+	fromColumn: fact_deprecation_impact.risk_band_sk
+	toColumn: dim_risk_band.risk_band_sk
+
+relationship rel_f_dep_aviso
+	fromColumn: fact_deprecation_impact.deprecation_sk
+	toColumn: 'Aviso de Obsolescencia'.deprecation_sk
+

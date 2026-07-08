@@ -1,0 +1,186 @@
+table fact_deprecation_impact
+	lineageTag: b2418c86-1eec-4385-bb62-8a3022e366e4
+	sourceLineageTag: [dbo].[fact_deprecation_impact]
+
+	/// Total de registros de impacto por deprecación.
+	measure 'Impactos de Deprecacion' = COUNTROWS ( fact_deprecation_impact )
+		lineageTag: 8a5891d3-443e-4377-8aa9-28ed9547560b
+
+	/// Activos distintos afectados por deprecación.
+	measure 'Activos Afectados' = CALCULATE ( DISTINCTCOUNT ( fact_deprecation_impact[asset_sk] ), fact_deprecation_impact[is_affected] = TRUE () )
+		lineageTag: 3d022a94-811f-457a-9902-26bd0d7c3fbe
+
+	/// Proporción de activos afectados respecto al inventario.
+	measure '% Activos Afectados' = DIVIDE ( [Activos Afectados], [Activos Inventario] )
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c9c75f44-b508-4e57-80af-ce41125a38b5
+
+	/// Riesgo promedio de impactos de deprecación.
+	measure 'Riesgo Promedio' = AVERAGE ( fact_deprecation_impact[risk_score] )
+		formatString: 0.00
+		lineageTag: 58f67170-0455-4ea1-9ebf-1269aaa94999
+
+	/// Promedio de días a retiro para tecnologías afectadas.
+	measure 'Dias Promedio a Retiro' = AVERAGE ( fact_deprecation_impact[days_to_retirement] )
+		formatString: 0.00
+		lineageTag: 8b557ea7-7f3b-49a0-ab4e-50b3919c1838
+
+	/// Cantidad de alertas con riesgo critico (risk_band_sk = 1).
+	measure 'Alertas Criticas' = CALCULATE([Impactos de Deprecacion], 'fact_deprecation_impact'[risk_band_sk] = "1")
+		formatString: #,0
+		lineageTag: c320895f-825c-475a-9107-3a8fb623d9b4
+
+	/// Cantidad de tecnologias unicas afectadas por deprecacion.
+	measure 'Tecnologias Afectadas' = DISTINCTCOUNT('fact_deprecation_impact'[technology_sk])
+		formatString: #,0
+		lineageTag: 14df1271-a779-418c-be01-01f157d1a82d
+
+	/// Minimo de dias a retiro entre los impactos activos.
+	measure 'Minimos Dias a Retiro' =
+			CALCULATE(
+			    MIN('fact_deprecation_impact'[days_to_retirement]),
+			    'fact_deprecation_impact'[days_to_retirement] > 0
+			)
+		formatString: #,0
+		lineageTag: 06360286-5e2b-4bc3-82aa-00cc92b6677e
+
+	column date_sk
+		dataType: int64
+		isHidden
+		formatString: 0
+		isAvailableInMdx: false
+		lineageTag: 876a4ea2-e6d6-4309-903c-6218dfe00a36
+		sourceLineageTag: date_sk
+		summarizeBy: none
+		sourceColumn: date_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column asset_sk
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 01175ac1-fb04-4e29-88c4-507955ed3f34
+		sourceLineageTag: asset_sk
+		summarizeBy: none
+		sourceColumn: asset_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column deprecation_sk
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: c1f74a40-93f4-4e6b-88ec-830d7a87d350
+		sourceLineageTag: deprecation_sk
+		summarizeBy: none
+		sourceColumn: deprecation_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column technology_sk
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: 59d0d119-3052-4c70-8b8b-3089bb16a783
+		sourceLineageTag: technology_sk
+		summarizeBy: none
+		sourceColumn: technology_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_band_sk
+		dataType: string
+		isHidden
+		isAvailableInMdx: false
+		lineageTag: ff679d20-ef28-41ac-86e4-90a8e685a5b6
+		sourceLineageTag: risk_band_sk
+		summarizeBy: none
+		sourceColumn: risk_band_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Puntuacion de riesgo de 0 (ninguno) a 1 (critico).
+	column risk_score
+		dataType: double
+		isHidden
+		formatString: 0.00
+		lineageTag: a3d3430d-9047-4e11-9864-76394e4c1024
+		sourceLineageTag: risk_score
+		summarizeBy: none
+		sourceColumn: risk_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Indica si el activo esta afectado por la deprecacion.
+	column is_affected
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bb9f9a41-c619-496d-9be2-0f304fc63119
+		sourceLineageTag: is_affected
+		summarizeBy: none
+		sourceColumn: is_affected
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Dias restantes hasta la fecha de retiro.
+	column days_to_retirement
+		dataType: int64
+		formatString: #,0
+		lineageTag: 48529649-ce50-46cd-a927-06619813bb65
+		sourceLineageTag: days_to_retirement
+		summarizeBy: none
+		sourceColumn: days_to_retirement
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Prioridad de atencion: critical, high, medium, low.
+	column priority
+		dataType: string
+		lineageTag: ede209d6-78f5-4e98-9ac1-aea1e502cbc8
+		sourceLineageTag: priority
+		summarizeBy: none
+		sourceColumn: priority
+
+		annotation SummarizationSetBy = Automatic
+
+	/// Estado de remediacion del activo afectado.
+	column remediation_status
+		dataType: string
+		lineageTag: bd69a039-e7f0-4a44-908b-445e576615fc
+		sourceLineageTag: remediation_status
+		summarizeBy: none
+		sourceColumn: remediation_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column snapshot_date
+		dataType: string
+		isHidden
+		lineageTag: 3bfe86f6-a6af-4f4a-9142-cee2ea58f8ac
+		sourceLineageTag: snapshot_date
+		summarizeBy: none
+		sourceColumn: snapshot_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_at
+		dataType: dateTime
+		isHidden
+		formatString: General Date
+		lineageTag: 7537f153-b0d7-476c-a890-81a0041b2130
+		sourceLineageTag: loaded_at
+		summarizeBy: none
+		sourceColumn: loaded_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_deprecation_impact = entity
+		mode: directLake
+		source
+			entityName: fact_deprecation_impact
+			expressionSource: 'DirectLake - gld_vigencia'
+

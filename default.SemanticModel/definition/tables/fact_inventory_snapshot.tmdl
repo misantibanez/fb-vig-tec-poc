@@ -1,0 +1,180 @@
+table fact_inventory_snapshot
+	lineageTag: baab758b-3ca0-405d-9e11-02d312db0e8e
+	sourceLineageTag: [dbo].[fact_inventory_snapshot]
+
+	/// Total de activos distintos en el inventario.
+	measure 'Activos Inventario' = DISTINCTCOUNT ( fact_inventory_snapshot[asset_sk] )
+		lineageTag: 4f28967c-edc1-4098-82b4-0451a58c2064
+
+	/// Activos distintos con estado activo.
+	measure 'Activos Activos' = CALCULATE ( [Activos Inventario], fact_inventory_snapshot[is_active] = TRUE () )
+		lineageTag: 9fd11a12-431f-4449-b58d-ff916ad36a2f
+
+	/// Conteo total de tecnologías registradas en inventario.
+	measure 'Tecnologias Registradas' = SUM ( fact_inventory_snapshot[technology_count] )
+		lineageTag: 9ee5c852-d8a3-46a3-90eb-19af0d336dcf
+
+	column date_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: babe6950-7c74-4e25-829a-6bd2a4fcd819
+		sourceLineageTag: date_sk
+		summarizeBy: sum
+		sourceColumn: date_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column asset_sk
+		dataType: string
+		lineageTag: a981e7c4-5747-4f42-9a7c-9aa3303ba9ef
+		sourceLineageTag: asset_sk
+		summarizeBy: none
+		sourceColumn: asset_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_nk
+		dataType: string
+		lineageTag: f1e692d3-d610-4c29-83e5-b9f3f1bd9c96
+		sourceLineageTag: account_nk
+		summarizeBy: none
+		sourceColumn: account_nk
+
+		annotation SummarizationSetBy = Automatic
+
+	column cloud_provider
+		dataType: string
+		lineageTag: d789cf79-801d-4bfc-970a-d4f705ccd499
+		sourceLineageTag: cloud_provider
+		summarizeBy: none
+		sourceColumn: cloud_provider
+
+		annotation SummarizationSetBy = Automatic
+
+	column asset_type
+		dataType: string
+		lineageTag: c5aa941c-af45-4474-a554-5d917b75f49a
+		sourceLineageTag: asset_type
+		summarizeBy: none
+		sourceColumn: asset_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: c1a3cbe5-18de-430d-a98f-b4c4d9d94bf6
+		sourceLineageTag: region
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column environment
+		dataType: string
+		lineageTag: 3dfa2c2d-fd46-410a-b7c3-a5c97e57d15d
+		sourceLineageTag: environment
+		summarizeBy: none
+		sourceColumn: environment
+
+		annotation SummarizationSetBy = Automatic
+
+	column criticality
+		dataType: string
+		lineageTag: 260e017a-5780-414f-afea-81e9bb02407c
+		sourceLineageTag: criticality
+		summarizeBy: none
+		sourceColumn: criticality
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner_team
+		dataType: string
+		lineageTag: 3d5a1779-4eec-48fd-86c8-06893507e7c7
+		sourceLineageTag: owner_team
+		summarizeBy: none
+		sourceColumn: owner_team
+
+		annotation SummarizationSetBy = Automatic
+
+	column provisioning_state
+		dataType: string
+		lineageTag: e39944dc-8971-440b-bb30-2c4acff22a17
+		sourceLineageTag: provisioning_state
+		summarizeBy: none
+		sourceColumn: provisioning_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_active
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 526a5eb8-d1a7-48be-82f0-121a34149dc0
+		sourceLineageTag: is_active
+		summarizeBy: none
+		sourceColumn: is_active
+
+		annotation SummarizationSetBy = Automatic
+
+	column technology_count
+		dataType: int64
+		formatString: 0
+		lineageTag: 724ea19d-6415-49e0-916b-d8ad2d0906ed
+		sourceLineageTag: technology_count
+		summarizeBy: sum
+		sourceColumn: technology_count
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_technology
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 64e6c581-2e02-42b9-9867-d3f9f1789b69
+		sourceLineageTag: has_technology
+		summarizeBy: none
+		sourceColumn: has_technology
+
+		annotation SummarizationSetBy = Automatic
+
+	column technology_families_json
+		dataType: string
+		lineageTag: b4bc2498-b010-484b-aafe-7d6aa27449f0
+		sourceLineageTag: technology_families_json
+		summarizeBy: none
+		sourceColumn: technology_families_json
+
+		annotation SummarizationSetBy = Automatic
+
+	column runtime_names_json
+		dataType: string
+		lineageTag: 798e82fc-3407-4b52-9fac-47d7c47a997a
+		sourceLineageTag: runtime_names_json
+		summarizeBy: none
+		sourceColumn: runtime_names_json
+
+		annotation SummarizationSetBy = Automatic
+
+	column snapshot_date
+		dataType: string
+		lineageTag: 8e6d5b52-2827-4ede-97ad-196a2c40197d
+		sourceLineageTag: snapshot_date
+		summarizeBy: none
+		sourceColumn: snapshot_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a89f345e-8f86-4f69-be6e-02a0993e7106
+		sourceLineageTag: loaded_at
+		summarizeBy: none
+		sourceColumn: loaded_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_inventory_snapshot = entity
+		mode: directLake
+		source
+			entityName: fact_inventory_snapshot
+			expressionSource: 'DirectLake - gld_vigencia'
+
