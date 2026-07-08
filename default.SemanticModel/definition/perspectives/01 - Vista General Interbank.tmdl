@@ -1,0 +1,23 @@
+/// Vista ejecutiva del inventario multicloud y exposición general a deprecaciones.
+perspective '01 - Vista General Interbank'
+
+	perspectiveTable dim_date
+
+	perspectiveTable dim_cloud_provider
+
+	perspectiveTable dim_environment
+
+	perspectiveTable fact_inventory_snapshot
+
+		perspectiveMeasure 'Activos Inventario'
+
+		perspectiveMeasure 'Activos Activos'
+
+		perspectiveMeasure 'Tecnologias Registradas'
+
+	perspectiveTable fact_deprecation_impact
+
+		perspectiveMeasure 'Activos Afectados'
+
+		perspectiveMeasure '% Activos Afectados'
+

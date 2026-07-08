@@ -1,0 +1,65 @@
+table dim_account
+	lineageTag: 6a7c1b4d-8f21-441f-90c3-f8c503a6d376
+	sourceLineageTag: [dbo].[dim_account]
+
+	column account_sk
+		dataType: string
+		lineageTag: 31307206-90f1-4d40-b067-a3878eb1e9b8
+		sourceLineageTag: account_sk
+		summarizeBy: none
+		sourceColumn: account_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_nk
+		dataType: string
+		lineageTag: f5bb941e-02d0-4af1-9232-6e740212b595
+		sourceLineageTag: account_nk
+		summarizeBy: none
+		sourceColumn: account_nk
+
+		annotation SummarizationSetBy = Automatic
+
+	column cloud_provider
+		dataType: string
+		lineageTag: 5126039c-fcc7-4193-8851-4d5be0b2a781
+		sourceLineageTag: cloud_provider
+		summarizeBy: none
+		sourceColumn: cloud_provider
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_type
+		dataType: string
+		lineageTag: 2454b9ce-4ecf-4869-9e7f-be33f83d1c47
+		sourceLineageTag: account_type
+		summarizeBy: none
+		sourceColumn: account_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column environment
+		dataType: string
+		lineageTag: b9bfe617-ee2d-4008-b0af-7f96a0976f54
+		sourceLineageTag: environment
+		summarizeBy: none
+		sourceColumn: environment
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3a534c30-b9a1-4218-9b7b-6594c8c8d09c
+		sourceLineageTag: loaded_at
+		summarizeBy: none
+		sourceColumn: loaded_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_account = entity
+		mode: directLake
+		source
+			entityName: dim_account
+			expressionSource: 'DirectLake - gld_vigencia'
+

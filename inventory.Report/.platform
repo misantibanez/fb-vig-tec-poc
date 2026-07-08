@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "inventory",
+    "description": "Inventario tecnologico y alertas de obsolescencia"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "01752cc0-8034-be46-42f7-5d0e2c32503c"
+  }
+}

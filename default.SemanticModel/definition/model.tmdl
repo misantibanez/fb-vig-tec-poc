@@ -1,0 +1,29 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["DirectLake - gld_vigencia"]
+
+annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","MCP-PBIModeling"]
+
+ref table dim_risk_band
+ref table dim_technology
+ref table dim_date
+ref table fact_inventory_snapshot
+ref table fact_deprecation_impact
+ref table dim_asset
+ref table dim_account
+ref table dim_cloud_provider
+ref table dim_environment
+ref table 'Aviso de Obsolescencia'
+
+ref perspective '01 - Vista General Interbank'
+ref perspective '02 - Riesgo y Deprecacion'
+ref perspective '03 - Detalle Activos y Tecnologia'
+

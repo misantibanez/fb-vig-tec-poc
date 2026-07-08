@@ -1,0 +1,114 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "6e1fd53b4c8a4a7f9d22",
+  "position": {
+    "x": 645,
+    "y": 222,
+    "z": 1,
+    "height": 224,
+    "width": 595
+  },
+  "visual": {
+    "visualType": "clusteredBarChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deprecation_impact"
+                    }
+                  },
+                  "Property": "remediation_status"
+                }
+              },
+              "queryRef": "fact_deprecation_impact.remediation_status",
+              "nativeQueryRef": "remediation_status",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deprecation_impact"
+                    }
+                  },
+                  "Property": "priority"
+                }
+              },
+              "queryRef": "fact_deprecation_impact.priority",
+              "nativeQueryRef": "priority"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deprecation_impact"
+                    }
+                  },
+                  "Property": "Activos Afectados"
+                }
+              },
+              "queryRef": "fact_deprecation_impact.Activos Afectados",
+              "nativeQueryRef": "Activos Afectados"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_deprecation_impact"
+                  }
+                },
+                "Property": "Activos Afectados"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Activos afectados por estado de remediacion'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "howCreated": "Copilot"
+}

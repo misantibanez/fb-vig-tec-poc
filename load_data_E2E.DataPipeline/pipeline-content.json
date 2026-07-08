@@ -1,0 +1,92 @@
+{
+  "properties": {
+    "description": "Orquesta 00 -> 01 -> 03 -> 06 para vigencia tecnologica",
+    "activities": [
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "504f560a-e0ff-9d3d-4495-ce770cd8b714",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "1.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Run_00_Landing_Azure_Inventory",
+        "dependsOn": []
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "27ec5b32-a45e-880a-482b-0986419a68e9",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "1.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Run_01_Bronze_Inventory_Multicloud",
+        "dependsOn": [
+          {
+            "activity": "Run_00_Landing_Azure_Inventory",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "9f1ed0c7-710e-830a-4075-a2a9f16b728d",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "1.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Run_03_Silver_Conform_Inventory",
+        "dependsOn": [
+          {
+            "activity": "Run_01_Bronze_Inventory_Multicloud",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      },
+      {
+        "type": "TridentNotebook",
+        "typeProperties": {
+          "notebookId": "0cc932c3-33c7-91b3-46bd-f0e9d97c6f7e",
+          "workspaceId": "00000000-0000-0000-0000-000000000000"
+        },
+        "policy": {
+          "timeout": "1.00:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureInput": false,
+          "secureOutput": false
+        },
+        "name": "Run_06_Gold_Warehouse_Analytics",
+        "dependsOn": [
+          {
+            "activity": "Run_03_Silver_Conform_Inventory",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

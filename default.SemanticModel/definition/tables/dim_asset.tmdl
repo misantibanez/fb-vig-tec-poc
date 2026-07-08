@@ -1,0 +1,175 @@
+table dim_asset
+	lineageTag: c1708e76-cf38-4131-b87c-7feb78ff33a8
+	sourceLineageTag: [dbo].[dim_asset]
+
+	column asset_sk
+		dataType: string
+		lineageTag: 0d91a51b-c2c7-48f7-8308-f0190dba439c
+		sourceLineageTag: asset_sk
+		summarizeBy: none
+		sourceColumn: asset_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column asset_nk
+		dataType: string
+		lineageTag: 08fa6fb7-513f-4680-99b2-85abc43a61af
+		sourceLineageTag: asset_nk
+		summarizeBy: none
+		sourceColumn: asset_nk
+
+		annotation SummarizationSetBy = Automatic
+
+	column cloud_provider
+		dataType: string
+		lineageTag: 48c68d99-f823-459a-8d06-3bf525310035
+		sourceLineageTag: cloud_provider
+		summarizeBy: none
+		sourceColumn: cloud_provider
+
+		annotation SummarizationSetBy = Automatic
+
+	column account_id
+		dataType: string
+		lineageTag: f900b1f7-9610-4e13-9b75-9ae85ab058df
+		sourceLineageTag: account_id
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column resource_group
+		dataType: string
+		lineageTag: 9d0a1e0c-e590-48e6-adb1-d65d99bbbcd8
+		sourceLineageTag: resource_group
+		summarizeBy: none
+		sourceColumn: resource_group
+
+		annotation SummarizationSetBy = Automatic
+
+	column asset_name
+		dataType: string
+		lineageTag: fb6283e9-accf-4c0b-9cc2-ca829ee2af31
+		sourceLineageTag: asset_name
+		summarizeBy: none
+		sourceColumn: asset_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column asset_type
+		dataType: string
+		lineageTag: 66bb8045-4501-43d3-8b38-cb984be72295
+		sourceLineageTag: asset_type
+		summarizeBy: none
+		sourceColumn: asset_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column region
+		dataType: string
+		lineageTag: 7ca54052-f55c-45e0-9eee-3b3466d35bbb
+		sourceLineageTag: region
+		summarizeBy: none
+		sourceColumn: region
+
+		annotation SummarizationSetBy = Automatic
+
+	column environment
+		dataType: string
+		lineageTag: 4c0bce1c-ccdf-495f-8ae4-cd01897e9b15
+		sourceLineageTag: environment
+		summarizeBy: none
+		sourceColumn: environment
+
+		annotation SummarizationSetBy = Automatic
+
+	column criticality
+		dataType: string
+		lineageTag: 316ebd74-c01d-4cf4-94bf-edde9801e58e
+		sourceLineageTag: criticality
+		summarizeBy: none
+		sourceColumn: criticality
+
+		annotation SummarizationSetBy = Automatic
+
+	column owner_team
+		dataType: string
+		lineageTag: 57095b68-8fea-4ccc-996f-1c7d70deba17
+		sourceLineageTag: owner_team
+		summarizeBy: none
+		sourceColumn: owner_team
+
+		annotation SummarizationSetBy = Automatic
+
+	column provisioning_state
+		dataType: string
+		lineageTag: 82be4721-9ba6-4655-93bf-1fc6bd5c5313
+		sourceLineageTag: provisioning_state
+		summarizeBy: none
+		sourceColumn: provisioning_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column sku_name
+		dataType: string
+		lineageTag: 6257ac83-8ec0-45fe-9905-68f4a8235131
+		sourceLineageTag: sku_name
+		summarizeBy: none
+		sourceColumn: sku_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column sku_tier
+		dataType: string
+		lineageTag: 14ffc18f-4d7b-4a1c-b5e7-1eb6fb6594ff
+		sourceLineageTag: sku_tier
+		summarizeBy: none
+		sourceColumn: sku_tier
+
+		annotation SummarizationSetBy = Automatic
+
+	column native_resource_id
+		dataType: string
+		lineageTag: 0b3a5b93-65b9-4268-a023-55c25f8109d5
+		sourceLineageTag: native_resource_id
+		summarizeBy: none
+		sourceColumn: native_resource_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_seen_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e67a5292-ecba-4b7f-b31c-781cb898ec0b
+		sourceLineageTag: first_seen_at
+		summarizeBy: none
+		sourceColumn: first_seen_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column last_seen_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e8c145d8-5cf0-4a2d-be9c-f906ca01e266
+		sourceLineageTag: last_seen_at
+		summarizeBy: none
+		sourceColumn: last_seen_at
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3e23631e-4f16-4969-841f-98df2be46c4e
+		sourceLineageTag: loaded_at
+		summarizeBy: none
+		sourceColumn: loaded_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_asset = entity
+		mode: directLake
+		source
+			entityName: dim_asset
+			expressionSource: 'DirectLake - gld_vigencia'
+

@@ -1,0 +1,47 @@
+table dim_risk_band
+	lineageTag: 6fcefe4d-e3b6-484a-89a4-9d6b1c2b3ff1
+	sourceLineageTag: [dbo].[dim_risk_band]
+
+	column risk_band_sk
+		dataType: string
+		lineageTag: 0733e0c4-dc1e-4a11-8d92-bbc914242a5e
+		sourceLineageTag: risk_band_sk
+		summarizeBy: none
+		sourceColumn: risk_band_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_band_name
+		dataType: string
+		lineageTag: c28bc555-30af-445d-833f-575e3b676b8c
+		sourceLineageTag: risk_band_name
+		summarizeBy: none
+		sourceColumn: risk_band_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column risk_order
+		dataType: int64
+		formatString: 0
+		lineageTag: 5fa9ad0a-2df8-4045-8c4e-edcf72069cdb
+		sourceLineageTag: risk_order
+		summarizeBy: sum
+		sourceColumn: risk_order
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 98f72fa2-65ef-432b-bfc3-8023a1da9f55
+		sourceLineageTag: description
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_risk_band = entity
+		mode: directLake
+		source
+			entityName: dim_risk_band
+			expressionSource: 'DirectLake - gld_vigencia'
+

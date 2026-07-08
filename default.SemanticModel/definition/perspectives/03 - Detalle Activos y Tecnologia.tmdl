@@ -1,0 +1,29 @@
+/// Vista granular por activo, tecnología y estado de remediación.
+perspective '03 - Detalle Activos y Tecnologia'
+
+	perspectiveTable dim_asset
+
+	perspectiveTable dim_account
+
+	perspectiveTable dim_technology
+
+	perspectiveTable dim_date
+
+	perspectiveTable fact_inventory_snapshot
+
+		perspectiveMeasure 'Activos Inventario'
+
+		perspectiveMeasure 'Tecnologias Registradas'
+
+	perspectiveTable fact_deprecation_impact
+
+		perspectiveMeasure 'Impactos de Deprecacion'
+
+		perspectiveMeasure 'Activos Afectados'
+
+		perspectiveMeasure 'Dias Promedio a Retiro'
+
+	perspectiveTable dim_cloud_provider
+
+	perspectiveTable dim_environment
+

@@ -1,0 +1,46 @@
+table dim_cloud_provider
+	lineageTag: 64241734-1a8d-4aa8-8dac-3898f1499538
+	sourceLineageTag: [dbo].[dim_cloud_provider]
+
+	column provider_sk
+		dataType: string
+		lineageTag: 9e79cf86-3d64-45ad-b707-665b4ba18d65
+		sourceLineageTag: provider_sk
+		summarizeBy: none
+		sourceColumn: provider_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column provider_name
+		dataType: string
+		lineageTag: 0093f8c4-7e7c-4fef-bf9e-b0137a8164f9
+		sourceLineageTag: provider_name
+		summarizeBy: none
+		sourceColumn: provider_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column display_name
+		dataType: string
+		lineageTag: e615b943-6166-4690-a610-1f36c8de6d90
+		sourceLineageTag: display_name
+		summarizeBy: none
+		sourceColumn: display_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column url
+		dataType: string
+		lineageTag: b7a4c69a-f71d-417c-9ba7-79040bff283c
+		sourceLineageTag: url
+		summarizeBy: none
+		sourceColumn: url
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_cloud_provider = entity
+		mode: directLake
+		source
+			entityName: dim_cloud_provider
+			expressionSource: 'DirectLake - gld_vigencia'
+

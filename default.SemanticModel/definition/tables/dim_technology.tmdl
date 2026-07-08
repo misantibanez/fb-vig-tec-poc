@@ -1,0 +1,75 @@
+table dim_technology
+	lineageTag: 608c9632-f767-4cb3-b86a-31a03a89d8ee
+	sourceLineageTag: [dbo].[dim_technology]
+
+	column technology_sk
+		dataType: string
+		lineageTag: c37c343e-8aaa-4886-b2b0-95c273479a1d
+		sourceLineageTag: technology_sk
+		summarizeBy: none
+		sourceColumn: technology_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column technology_family
+		dataType: string
+		lineageTag: 7c1876fe-3ee4-4eb4-af06-56681a1de49e
+		sourceLineageTag: technology_family
+		summarizeBy: none
+		sourceColumn: technology_family
+
+		annotation SummarizationSetBy = Automatic
+
+	column technology_source
+		dataType: string
+		lineageTag: 60117f32-1da8-4b48-932f-3cd5b93a5ae9
+		sourceLineageTag: technology_source
+		summarizeBy: none
+		sourceColumn: technology_source
+
+		annotation SummarizationSetBy = Automatic
+
+	column runtime_name
+		dataType: string
+		lineageTag: 8096fe72-5f63-4bc7-b048-50525f48c974
+		sourceLineageTag: runtime_name
+		summarizeBy: none
+		sourceColumn: runtime_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column runtime_version
+		dataType: string
+		lineageTag: eb48d4e7-f11d-46ab-ae60-15626fcece4d
+		sourceLineageTag: runtime_version
+		summarizeBy: none
+		sourceColumn: runtime_version
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_deprecated_stub
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 5f7cd7e6-8b07-4da4-ad08-5cae19ee5543
+		sourceLineageTag: is_deprecated_stub
+		summarizeBy: none
+		sourceColumn: is_deprecated_stub
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 03f89728-2990-4cb2-8141-b2f0823d3d32
+		sourceLineageTag: loaded_at
+		summarizeBy: none
+		sourceColumn: loaded_at
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_technology = entity
+		mode: directLake
+		source
+			entityName: dim_technology
+			expressionSource: 'DirectLake - gld_vigencia'
+

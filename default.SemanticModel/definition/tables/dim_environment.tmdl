@@ -1,0 +1,47 @@
+table dim_environment
+	lineageTag: 943e0f27-0b30-4272-8c7e-22f3af37bce9
+	sourceLineageTag: [dbo].[dim_environment]
+
+	column environment_sk
+		dataType: string
+		lineageTag: 215d0782-2f24-4654-8a55-232918ce626f
+		sourceLineageTag: environment_sk
+		summarizeBy: none
+		sourceColumn: environment_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column environment_name
+		dataType: string
+		lineageTag: 9780f2e9-3084-43cf-9846-0c33cc53c7cf
+		sourceLineageTag: environment_name
+		summarizeBy: none
+		sourceColumn: environment_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_production
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 35034371-c7c5-4e61-b798-5152a623d5a9
+		sourceLineageTag: is_production
+		summarizeBy: none
+		sourceColumn: is_production
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: 0b932dca-031a-4cd6-b388-b0bc74370527
+		sourceLineageTag: description
+		summarizeBy: none
+		sourceColumn: description
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_environment = entity
+		mode: directLake
+		source
+			entityName: dim_environment
+			expressionSource: 'DirectLake - gld_vigencia'
+

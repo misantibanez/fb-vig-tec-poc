@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "DataPipeline",
+    "displayName": "load_data_E2E",
+    "description": "Pipeline de orquestacion 00-01-03-06"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "bd37b65a-e5c4-a7b4-4af0-82792893c008"
+  }
+}

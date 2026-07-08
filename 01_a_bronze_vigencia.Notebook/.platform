@@ -1,0 +1,12 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Notebook",
+    "displayName": "01_a_bronze_vigencia",
+    "description": "Bronze procesamiento release communications a brz_deprecation_raw"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "b0de98cb-88d9-9c0b-400b-cb3f541d36d9"
+  }
+}

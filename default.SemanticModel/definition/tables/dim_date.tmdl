@@ -1,0 +1,117 @@
+table dim_date
+	lineageTag: e99d1fb9-4daa-42e3-9b45-13d69122c025
+	sourceLineageTag: [dbo].[dim_date]
+
+	column date_sk
+		dataType: int64
+		formatString: 0
+		lineageTag: 826266fc-84c9-4193-bf2e-eac0e078a9ae
+		sourceLineageTag: date_sk
+		summarizeBy: sum
+		sourceColumn: date_sk
+
+		annotation SummarizationSetBy = Automatic
+
+	column full_date
+		dataType: string
+		lineageTag: 718e87ee-72e4-47fb-bd5f-844e2c6d5e7a
+		sourceLineageTag: full_date
+		summarizeBy: none
+		sourceColumn: full_date
+
+		annotation SummarizationSetBy = Automatic
+
+	column year
+		dataType: int64
+		formatString: 0
+		lineageTag: 463f3b4f-65ae-445a-b975-b7e407257414
+		sourceLineageTag: year
+		summarizeBy: sum
+		sourceColumn: year
+
+		annotation SummarizationSetBy = Automatic
+
+	column quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: ee99e140-ee82-4277-8388-2cdd1c5decfa
+		sourceLineageTag: quarter
+		summarizeBy: sum
+		sourceColumn: quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column month
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ab678c1-3b0e-4312-9664-140581b22b54
+		sourceLineageTag: month
+		summarizeBy: sum
+		sourceColumn: month
+
+		annotation SummarizationSetBy = Automatic
+
+	column week
+		dataType: int64
+		formatString: 0
+		lineageTag: 6df5dd8d-7956-4558-9a8b-36af69897bbb
+		sourceLineageTag: week
+		summarizeBy: sum
+		sourceColumn: week
+
+		annotation SummarizationSetBy = Automatic
+
+	column day
+		dataType: int64
+		formatString: 0
+		lineageTag: 746f2d51-2c5d-434d-be1c-f2c85d936d84
+		sourceLineageTag: day
+		summarizeBy: sum
+		sourceColumn: day
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_of_week
+		dataType: int64
+		formatString: 0
+		lineageTag: ebf9d4e1-34b0-4966-945e-4809c606b938
+		sourceLineageTag: day_of_week
+		summarizeBy: sum
+		sourceColumn: day_of_week
+
+		annotation SummarizationSetBy = Automatic
+
+	column day_name
+		dataType: string
+		lineageTag: 8ea5f234-d420-45c5-94a2-6301e7922637
+		sourceLineageTag: day_name
+		summarizeBy: none
+		sourceColumn: day_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column month_name
+		dataType: string
+		lineageTag: b2f99668-e42c-4d92-a1fd-7cb77cc68c19
+		sourceLineageTag: month_name
+		summarizeBy: none
+		sourceColumn: month_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column is_weekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: a0b247d9-58f5-4176-905e-6f33e12aad0a
+		sourceLineageTag: is_weekend
+		summarizeBy: none
+		sourceColumn: is_weekend
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_date = entity
+		mode: directLake
+		source
+			entityName: dim_date
+			expressionSource: 'DirectLake - gld_vigencia'
+

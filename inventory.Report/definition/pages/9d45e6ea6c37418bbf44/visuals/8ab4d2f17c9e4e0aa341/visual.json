@@ -1,0 +1,197 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "8ab4d2f17c9e4e0aa341",
+  "position": {
+    "x": 40,
+    "y": 456,
+    "z": 1,
+    "height": 224,
+    "width": 1200
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_asset"
+                    }
+                  },
+                  "Property": "asset_name"
+                }
+              },
+              "queryRef": "dim_asset.asset_name",
+              "nativeQueryRef": "asset_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_asset"
+                    }
+                  },
+                  "Property": "environment"
+                }
+              },
+              "queryRef": "dim_asset.environment",
+              "nativeQueryRef": "environment"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_technology"
+                    }
+                  },
+                  "Property": "runtime_name"
+                }
+              },
+              "queryRef": "dim_technology.runtime_name",
+              "nativeQueryRef": "runtime_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_technology"
+                    }
+                  },
+                  "Property": "runtime_version"
+                }
+              },
+              "queryRef": "dim_technology.runtime_version",
+              "nativeQueryRef": "runtime_version"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deprecation_impact"
+                    }
+                  },
+                  "Property": "days_to_retirement"
+                }
+              },
+              "queryRef": "fact_deprecation_impact.days_to_retirement",
+              "nativeQueryRef": "days_to_retirement"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deprecation_impact"
+                    }
+                  },
+                  "Property": "priority"
+                }
+              },
+              "queryRef": "fact_deprecation_impact.priority",
+              "nativeQueryRef": "priority"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deprecation_impact"
+                    }
+                  },
+                  "Property": "remediation_status"
+                }
+              },
+              "queryRef": "fact_deprecation_impact.remediation_status",
+              "nativeQueryRef": "remediation_status"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_risk_band"
+                    }
+                  },
+                  "Property": "risk_band_name"
+                }
+              },
+              "queryRef": "dim_risk_band.risk_band_name",
+              "nativeQueryRef": "risk_band_name"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "fact_deprecation_impact"
+                  }
+                },
+                "Property": "days_to_retirement"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Detalle de activos en riesgo'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "howCreated": "Copilot"
+}
